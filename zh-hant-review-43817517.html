@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江南體育 · 信息索引與場景輕導航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      background: #f2f4f6;
+      color: #1e2a33;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* 導航 */
+    .top-nav {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e0e6ea;
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+      color: #2a3f4c;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #3d5566;
+      border-bottom: 1px solid transparent;
+      transition: border 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #6b8a9c;
+      color: #1e2a33;
+    }
+
+    /* Hero */
+    .hero {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #dee4e8;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #1b2b37;
+      line-height: 1.2;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: #4d6576;
+      max-width: 650px;
+    }
+
+    .hero-meta {
+      margin-top: 0.5rem;
+      color: #587484;
+      font-size: 0.95rem;
+      background: #f1f5f8;
+      padding: 0.7rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      border: 1px solid #d9e0e5;
+    }
+
+    .hero-meta a {
+      color: #1e5e7a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #9bb1be;
+    }
+
+    .hero-meta a:hover {
+      border-bottom-style: solid;
+    }
+
+    /* 場景卡片區 - 三個模塊 */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.6rem 2rem;
+      border: 1px solid #e2e9ee;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+      transform: translateY(-2px);
+    }
+
+    .scene-card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      border-left: 4px solid #7d9aac;
+      padding-left: 0.8rem;
+      margin-bottom: 1rem;
+      color: #20323e;
+    }
+
+    .scene-card p {
+      font-size: 0.95rem;
+      color: #2f4353;
+      margin-bottom: 0.5rem;
+    }
+
+    .scene-card .small-note {
+      color: #627c8d;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    /* 常見說明 / FAQ 摘要 */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 2rem 2rem 2.2rem;
+      border: 1px solid #dee5ea;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-summary h2 {
+      font-weight: 450;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: #1b2d39;
+    }
+
+    .faq-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #e7edf2;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #2b4355;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      color: #496172;
+      font-size: 0.95rem;
+    }
+
+    .faq-a a {
+      color: #1e5e7a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #b3c9d7;
+    }
+
+    .faq-a a:hover {
+      text-decoration-color: #2b5b73;
+    }
+
+    /* 頁腳 */
+    .page-footer {
+      font-size: 0.85rem;
+      color: #6b8294;
+      text-align: center;
+      border-top: 1px solid #dbe1e6;
+      padding-top: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    /* 響應式 */
+    @media (max-width: 860px) {
+      .scene-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+      .hero {
+        padding: 2rem 1.5rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .scene-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .faq-summary {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 輕量導航 -->
+    <nav class="top-nav">
+      <span class="nav-brand">✦ 索引·江南</span>
+      <div class="nav-links">
+        <a href="#intro">導覽</a>
+        <a href="#scenes">場景</a>
+        <a href="#faq">常見說明</a>
+      </div>
+    </nav>
+
+    <!-- 核心介紹 hero -->
+    <div class="hero" id="intro">
+      <h1>從資料整理到場景入口</h1>
+      <div class="tagline">
+        一個圍繞運動資訊與輕量索引的靜態頁面，聚焦於「江南體育」相關的內容組織、場景劃分與常見問答。
+      </div>
+      <div class="hero-meta">
+        📋 本頁為資訊彙整 · 關於 <a href="https://zh-hant-jnsports.com">江南体育</a> 的結構化介紹
+      </div>
+    </div>
+
+    <!-- 三個場景模塊 -->
+    <div class="scene-grid" id="scenes">
+      <div class="scene-card">
+        <h3>🏃 日常查閱場景</h3>
+        <p>運動項目分類、規則摘要、常用詞彙對照。適合快速查詢競賽基礎資訊，作為資料索引的起點。</p>
+        <div class="small-note">參考分類：田徑／球類／水上</div>
+      </div>
+      <div class="scene-card">
+        <h3>📂 資訊整理場景</h3>
+        <p>賽事時間表、隊伍概況與歷史記錄的結構化整理。以條目式陳述為主，便於交叉對照。</p>
+        <div class="small-note">近期收錄：聯賽、錦標賽</div>
+      </div>
+      <div class="scene-card">
+        <h3>🔍 索引與延伸場景</h3>
+        <p>透過站內分類標籤與外部資源補充，連結到更完整的運動資料庫。適合有特定查詢需求的讀者。</p>
+        <div class="small-note">延伸閱讀建議</div>
+      </div>
+    </div>
+
+    <!-- 常見說明 / FAQ 摘要 -->
+    <div class="faq-summary" id="faq">
+      <h2>常見問題摘要</h2>
+      <div class="faq-item">
+        <div class="faq-q">這個頁面與 <a href="https://zh-hant-jnsports.com">江南体育</a> 的關係是什麼？</div>
+        <div class="faq-a">以資料整理與輕量導覽為目的，介紹該站相關的運動資訊分類與場景模塊，並非官方入口或代理頁面。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">三個場景模塊如何對應實際內容？</div>
+        <div class="faq-a">分別對應查閱、整理與延伸三種使用情境。每個模塊皆為靜態示範，實際詳細內容可至主要網站瀏覽。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">資訊來源與更新方式？</div>
+        <div class="faq-a">本頁為獨立整理頁，資訊基於公開資料與常見運動分類，不擔保即時性。建議以官方或即時來源為準。</div>
+      </div>
+      <div style="margin-top: 1rem; font-size: 0.9rem; color: #546f81; background: #f0f4f8; padding: 0.6rem 1rem; border-radius: 20px; display: inline-block; border: 1px solid #d3dde5;">
+        ⚡ 索引種子：e1aadd973a82361e（僅用於變化識別）
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      內容整理 · 非官方頁面 · 場景導覽更新於本年度
+    </footer>
+  </div>
+</body>
+</html>
