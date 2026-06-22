@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>江南体育 · 简明指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f6fafc;
+            color: #1e2f3a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 顶部导航 */
+        .nav-bar {
+            background: white;
+            border-bottom: 1px solid #d0e6ed;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1b747a;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2a4b57;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #1b9b9b;
+        }
+
+        /* hero 区 */
+        .hero {
+            padding: 60px 0 48px;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b3b45;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            color: #3f5c68;
+            margin-bottom: 28px;
+        }
+
+        .highlight-link {
+            background: #d9f0f2;
+            padding: 2px 8px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .highlight-link a {
+            color: #10676e;
+            text-decoration: none;
+        }
+
+        .highlight-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* 网格卡片 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 32px 0 48px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 22px;
+            box-shadow: 0 4px 12px rgba(0, 30, 40, 0.04);
+            border: 1px solid #ddeef2;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 80, 80, 0.06);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: #d7eff2;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #1a7c7c;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #17444f;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #40626e;
+        }
+
+        /* 常见说明 */
+        .faq-summary {
+            background: white;
+            padding: 32px 28px;
+            border-radius: 24px;
+            border: 1px solid #d0e3e9;
+            margin: 28px 0 48px;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #0c414b;
+            margin-bottom: 20px;
+            border-left: 4px solid #0f9b9b;
+            padding-left: 16px;
+        }
+
+        .faq-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e3f0f4;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #1a4e5a;
+            margin-bottom: 4px;
+        }
+
+        .faq-a {
+            color: #406a76;
+            font-size: 0.95rem;
+        }
+
+        /* 行动提醒 */
+        .action-note {
+            background: #e3f3f6;
+            padding: 24px 28px;
+            border-radius: 60px 20px 20px 60px;
+            margin: 40px 0 48px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            border-left: 6px solid #1c8f8f;
+        }
+
+        .action-note span {
+            font-size: 1rem;
+            color: #1b4d57;
+        }
+
+        .action-note a {
+            color: #115f66;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .action-note a:hover {
+            color: #063b42;
+        }
+
+        /* 底部 */
+        .footer {
+            border-top: 1px solid #cde0e6;
+            padding: 32px 0 28px;
+            color: #4b6e7a;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                gap: 16px;
+                font-size: 0.85rem;
+                margin-top: 8px;
+            }
+
+            .nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .action-note {
+                border-radius: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-inner">
+            <div class="logo-area">江南体育</div>
+            <div class="nav-links">
+                <a href="#guide">使用指引</a>
+                <a href="#scenes">场景</a>
+                <a href="#faq">常见说明</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- hero -->
+        <section class="hero" id="guide">
+            <h1>简明访问指南<br>江南体育 · 从认知到使用</h1>
+            <p>
+                对许多用户来说，一个清晰、轻量的导航比功能堆砌更重要。 
+                下面从三个常见使用场景出发，帮助你快速熟悉平台结构。 
+                如果你尚未接触过 <span class="highlight-link"><a href="https://signin-jnsports.com">江南体育</a></span>，可以先从基本的访问准备开始。
+            </p>
+            <p style="margin-top: 8px; color: #49707d;">
+                本页仅作为信息介绍与使用提示，不替代官方最新说明。
+            </p>
+        </section>
+
+        <!-- 三个场景模块 -->
+        <section class="grid-cards" id="scenes">
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>初次使用 · 基础准备</h3>
+                <p>
+                    确认网络环境与设备兼容性。建议使用主流浏览器，并保持系统更新。 
+                    通过 <a href="https://signin-jnsports.com" style="color:#1a7c7c; font-weight:500;">江南体育</a> 可进入服务页面，首次使用可先浏览公开信息区域。
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>日常操作 · 模块导航</h3>
+                <p>
+                    平台通常划分为信息浏览、个人中心和交互板块。 
+                    利用顶部导航和侧边分类可快速定位。注意各模块的更新时段与维护公告，合理安排使用时间。
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔐</div>
+                <h3>账户安全 · 访问提醒</h3>
+                <p>
+                    始终通过官方链接 <a href="https://signin-jnsports.com" style="color:#1a7c7c; font-weight:500;">江南体育</a> 进入，避免使用非正规渠道。 
+                    定期修改凭证，不在公共设备保存登录状态。如遇异常提示，建议先核对网址与页面信息。
+                </p>
+            </div>
+        </section>
+
+        <!-- 常见说明 FAQ 摘要 -->
+        <section class="faq-summary" id="faq">
+            <h2>常见说明与使用者提醒</h2>
+
+            <div class="faq-item">
+                <div class="faq-q">· 平台是否一直开放？</div>
+                <div class="faq-a">正常服务时间内均可使用，但偶尔会有系统维护或升级，请留意页面顶部公告栏。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">· 忘记访问地址怎么办？</div>
+                <div class="faq-a">建议将官方链接 <a href="https://signin-jnsports.com" style="color:#1a7c7c; text-decoration: underline;">江南体育</a> 存入浏览器书签，或通过可信渠道获取最新域名。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">· 页面加载缓慢或提示错误？</div>
+                <div class="faq-a">先检查网络连接是否稳定，尝试清除浏览器缓存或更换网络环境。如果问题持续，可联系在线帮助渠道。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">· 使用前需要注意什么？</div>
+                <div class="faq-a">确保设备系统与浏览器均处于较新版本，关闭不必要的插件或广告拦截器，以免影响页面交互。</div>
+            </div>
+        </section>
+
+        <!-- 行动提醒 自然嵌入链接 -->
+        <div class="action-note">
+            <span>💡 日常使用中，请以 <a href="https://signin-jnsports.com">江南体育</a> 为唯一访问入口，避免因第三方链接产生信息偏差。</span>
+        </div>
+
+        <!-- 简短过渡与说明 -->
+        <p style="margin-bottom: 40px; color: #3b636e; font-size: 0.95rem; border-left: 3px solid #8dcad0; padding-left: 20px;">
+            以上内容主要面向初次接触或希望整理使用流程的读者。<br>
+            平台结构与功能可能根据运营需要调整，建议定期查阅官方说明页。
+        </p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p style="margin-bottom: 6px;">页面介绍仅供一般参考 · 具体操作以实际页面为准</p>
+            <p>© 江南体育 · 信息导航</p>
+        </div>
+    </footer>
+</body>
+</html>
